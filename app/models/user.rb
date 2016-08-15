@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise  :database_authenticatable, :registerable, 
          :recoverable, :rememberable, :trackable, :omniauthable #:invitable, :confirmable,:validatable
+  has_many :identities,  dependent: :destroy 
 
 TEMP_EMAIL_PREFIX = "temp"
   def self.find_for_oauth(auth, signed_in_resource = nil)
@@ -23,7 +24,8 @@ TEMP_EMAIL_PREFIX = "temp"
       # If no verified email was provided we assign a temporary email and ask the
       # user to verify it on the next step via UsersController.finish_signup
       email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-      email = auth.info.email if email_is_verified
+      email = auth.info.email #if email_is_verified
+ 
       user = User.where(:email => email).first if email
 
       # Create the user if it's a new registration
@@ -31,12 +33,15 @@ TEMP_EMAIL_PREFIX = "temp"
       	user = User.new(
       	  name: auth.extra.raw_info.name,
           #username: auth.info.nickname || auth.uid,
+          #url: auth.info.url,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20]
           )
       	#user.skip_confirmation!
       	user.save!
       end
+
+       #user.update_attributes(email: auth.extra.raw_info.email) if auth.extra.raw_info.email
   end
 
     # Associate the identity with the user if needed
