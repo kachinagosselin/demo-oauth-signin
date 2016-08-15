@@ -24,3 +24,84 @@
 <footer>
 </footer>
 </html>
+
+<!-- /.modal compose message -->
+<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header" style="border:none;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 style="text-align:center;">Sign In</h3>
+      </div>
+
+      <div class="modal-body" style="min-height:425px;">
+        <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+
+        <div class="row">
+          <%= devise_error_messages! %>
+          <div class="col-md-6 col-md-offset-3" style="padding-bottom:10px;">
+            <div class="form-group">
+              <%= f.email_field :email, :autofocus => true, :placeholder => "Email", class: 'form-control  style-minimalistic' %>
+            </div>
+          </div>
+          <div class="col-md-6 col-md-offset-3" style="padding-bottom:15px;">
+
+            <div class="form-group">
+              <%= f.password_field :password, :placeholder => "Password", class: 'form-control style-minimalistic' %>
+            </div>
+          </div>
+          <div class="col-md-6 col-md-offset-3" style="text-align:center;padding:5px 0px;padding-bottom:30px;">
+            <% if devise_mapping.rememberable? -%>
+            <div class="checkbox" style="width:150px">
+              <label>
+                <%= f.check_box :remember_me %> Remember me
+              </label>
+            </div>
+            <% end %>   
+            <%- if devise_mapping.recoverable? %>
+            <%= link_to "Forgot password?", new_password_path(resource_name), class: 'pull-right', style: "margin-top:-30px;padding-right:15px;" %>
+            <% end %>           
+          </div>
+
+
+          <%= f.submit 'Sign in', :class => 'col-md-4 col-md-offset-4 btn btn-primary' %>
+          <%- if devise_mapping.registerable? %>
+          <div class="col-md-12" style="text-align:center;padding:5px 0px;">or <%= link_to 'Sign up', new_registration_path(resource_name), class: ''  %></div>
+          <% end -%>
+
+            <% end %>           
+
+        <div class="col-md-4 col-md-offset-4">
+          <%- if devise_mapping.omniauthable? %>
+          <div class="facebookauth">
+            <%= link_to "Sign In with Facebook", user_facebook_omniauth_authorize_path()%>
+          </div>
+          <% end -%>
+        </div>
+
+        <div class="col-md-4 col-md-offset-4">
+          <%- if devise_mapping.omniauthable? %>
+          <div class="githubauth">
+            <%= link_to "Sign In with GitHub", user_github_omniauth_authorize_path()%>
+          </div>
+          <% end -%>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <%- if devise_mapping.omniauthable? %>
+            <div class="linkedinauth">
+              <%= link_to "Sign In with LinkedIn", user_linkedin_omniauth_authorize_path()%>
+            </div>
+            <% end -%>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal compose message -->

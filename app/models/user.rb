@@ -15,7 +15,7 @@ TEMP_EMAIL_PREFIX = "temp"
     # to prevent the identity being locked with accidentally created accounts.
     # Note that this may leave zombie accounts (with no associated identity) which
     # can be cleaned up at a later date.
-    
+
     user = signed_in_resource ? signed_in_resource : identity.user
 
     # Create the user if needed
@@ -24,8 +24,8 @@ TEMP_EMAIL_PREFIX = "temp"
       # Get the existing user by email if the provider gives us a verified email.
       # If no verified email was provided we assign a temporary email and ask the
       # user to verify it on the next step via UsersController.finish_signup
-      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-      email = auth.info.email #if email_is_verified
+      email_is_verified = auth.info.email #&& (auth.info.verified || auth.info.verified_email)
+      email = auth.info.email if email_is_verified
  
       user = User.where(:email => email).first if email
 

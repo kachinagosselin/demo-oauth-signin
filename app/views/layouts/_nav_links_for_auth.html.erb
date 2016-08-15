@@ -1,7 +1,8 @@
 
 <% if !user_signed_in? %>
-<li><%= link_to 'Sign In', new_user_session_path%></li>
-<li><%= link_to 'Register', new_user_registration_path, class: "btn btn-primary", id: "register"  %></li>
+<li><a href="#" data-toggle='modal' data-target='#signin-modal'>Sign In</a></li>
+<li><button type='button' class='btn btn-primary' id="register" data-toggle='modal' data-target='#register'>Register</button></li>
+
 <% end %>
 <!-- <% if user_signed_in? %>
 <li><%= link_to 'Users', users_path %></li>
@@ -28,22 +29,23 @@
 		<button class="btn btn-lg btn-default dropdown-toggle" type="button" id="nav-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 			<div id="dropdown-avatar" class="col-md-3" style="min-width:25px;">
 <!-- 				<%= image_tag "/default_user.png", :class => "img-circle"%>
- -->			</div>
-			<div id="dropdown-name" class="col-md-5">
-				<%= current_user.first_name %> 
-			</div>
-			<div class="col-md-2">
-				<span class="nav-icon glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-			</div>
-		</button>
-		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-			<% if user_signed_in? %>
-			<li><%= link_to 'View Profile', user_path(current_user) %></li>
-			<li><%= link_to 'Edit account', edit_user_registration_path %></li>
-			<li role="separator" class="divider"></li>
-			<li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
-			<% end %>			
-		</ul>
-	</div>
+-->			</div>
+<div id="dropdown-name" class="col-md-5">
+	<%= current_user.first_name %> 
+</div>
+<div class="col-md-2">
+	<span class="nav-icon glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+</div>
+</button>
+<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+	<% if user_signed_in? %>
+	<li><%= link_to 'View Profile', user_path(current_user) %></li>
+	<li><%= link_to 'Edit account', edit_user_registration_path %></li>
+	<li role="separator" class="divider"></li>
+	<li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+	<% end %>			
+</ul>
+</div>
 </li>
 <% end %>
+
