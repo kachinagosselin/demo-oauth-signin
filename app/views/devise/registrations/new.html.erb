@@ -27,7 +27,7 @@
                 <div class="col-md-12">
 
                   <%- if devise_mapping.omniauthable? %>
-                          <div class="btn btn-primary facebookauth" style="color:#fff">
+                          <div class="btn btn-primary facebookauth" style="color:#fff !important;">
                             <%= link_to "Join with Facebook", user_facebook_omniauth_authorize_path()%>
                           </div>
                   <% end -%>
@@ -40,19 +40,21 @@
             <div class="col-md-12">
 
               <%- if devise_mapping.omniauthable? %>
-                  <div class="googleauth">
+                  <div class="githubauth">
+                    <%= link_to "Join with GitHub", user_github_omniauth_authorize_path()%>
+
                   </div>
               <% end -%>
             </div>
           </div>
-
-
 
       <div class="row">
               <div class="col-md-12">
 
                   <%- if devise_mapping.omniauthable? %>
                       <div class="linkedinauth">
+                      <%= link_to "Join with LinkedIn", user_linkedin_omniauth_authorize_path()%>
+
                       </div>
                   <% end -%>
               </div>
