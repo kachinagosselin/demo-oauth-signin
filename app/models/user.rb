@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise  :database_authenticatable, :registerable, 
          :recoverable, :rememberable, :trackable, :omniauthable #:invitable, :confirmable,:validatable
 
+TEMP_EMAIL_PREFIX = "temp"
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
     # Get the identity and user if they exist
@@ -30,10 +31,10 @@ class User < ActiveRecord::Base
       	user = User.new(
       		name: auth.extra.raw_info.name,
           #username: auth.info.nickname || auth.uid,
-          email: email, #? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20]
           )
-      	user.skip_confirmation!
+      	#user.skip_confirmation!
       	user.save!
       end
   end
