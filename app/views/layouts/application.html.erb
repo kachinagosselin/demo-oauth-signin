@@ -65,43 +65,33 @@
           </div>
 
 
-          <%= f.submit 'Sign in', :class => 'col-md-4 col-md-offset-4 btn btn-primary' %>
+          <%= f.submit 'Sign in', :class => 'col-xs-8 col-xs-offset-2  col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 btn btn-primary' %>
           <%- if devise_mapping.registerable? %>
-          <div class="col-md-12" style="text-align:center;padding:5px 0px;">or <%= link_to 'Sign up', new_registration_path(resource_name), class: ''  %></div>
+          <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;padding:5px 0px;">or <%= link_to 'Sign up', new_registration_path(resource_name), class: ''  %></div>
           <% end -%>
 
-            <% end %>           
+          <% end %>           
 
-        <div class="col-md-4 col-md-offset-4">
-          <%- if devise_mapping.omniauthable? %>
-          <div class="facebookauth">
-            <%= link_to "Sign In with Facebook", user_facebook_omniauth_authorize_path()%>
-          </div>
-          <% end -%>
-        </div>
+          <div class="row">
+            <div class="col-md-12">
+              <hr>
 
-        <div class="col-md-4 col-md-offset-4">
-          <%- if devise_mapping.omniauthable? %>
-          <div class="githubauth">
-            <%= link_to "Sign In with GitHub", user_github_omniauth_authorize_path()%>
-          </div>
-          <% end -%>
-        </div>
+              <%- if devise_mapping.omniauthable? %>
+              <%= link_to "Sign In with Facebook", user_facebook_omniauth_authorize_path(), class: 'facebookauth btn btn-primary col-md-4 col-md-offset-4', style: "margin-bottom: 20px" %>
+              <% end -%>
 
-        <div class="row">
-          <div class="col-md-4 col-md-offset-4">
-            <%- if devise_mapping.omniauthable? %>
-            <div class="linkedinauth">
-              <%= link_to "Sign In with LinkedIn", user_linkedin_omniauth_authorize_path()%>
+              <%- if devise_mapping.omniauthable? %>
+              <%= link_to "Sign In with GitHub", user_github_omniauth_authorize_path(), class: 'githubauth btn btn-default col-md-4 col-md-offset-4', style: "margin-bottom: 20px"%>
+              <% end -%>
+
+              <%- if devise_mapping.omniauthable? %>
+              <%= link_to "Sign In with LinkedIn", user_linkedin_omniauth_authorize_path(), class: 'linkedinauth btn btn-info col-md-4 col-md-offset-4', style: "margin-bottom: 20px" %>
+              <% end -%>
             </div>
-            <% end -%>
           </div>
+
         </div>
 
-      </div>
-
-    </div>
-
-  </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal compose message -->
