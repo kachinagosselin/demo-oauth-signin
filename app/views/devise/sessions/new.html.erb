@@ -26,3 +26,74 @@
       <% end -%>
   <% end %>
 </div>
+
+  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+
+    <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+            <div class="row">
+                <div class="col-md-12">
+
+                  <%- if devise_mapping.omniauthable? %>
+                          <div class="btn btn-primary facebookauth" style="color:#fff !important;">
+                            <%= link_to "Join with Facebook", user_facebook_omniauth_authorize_path()%>
+                          </div>
+                  <% end -%>
+
+                </div>
+              </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+
+              <%- if devise_mapping.omniauthable? %>
+                  <div class="githubauth">
+                    <%= link_to "Join with GitHub", user_github_omniauth_authorize_path()%>
+
+                  </div>
+              <% end -%>
+            </div>
+          </div>
+
+      <div class="row">
+              <div class="col-md-12">
+
+                  <%- if devise_mapping.omniauthable? %>
+                      <div class="linkedinauth">
+                      <%= link_to "Join with LinkedIn", user_linkedin_omniauth_authorize_path()%>
+
+                      </div>
+                  <% end -%>
+              </div>
+      </div>
+
+          <div class="row">
+            <div class="col-md-12">
+
+              <%- if devise_mapping.omniauthable? %>
+                  <div class="twitterauth">
+                  </div>
+              <% end -%>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-5">
+          <div class="emailform">
+            <div class="form-inputs", style="margin-left: 7%">
+
+
+                  <%= devise_error_messages! %>
+                  <%= f.input :email, :label_html => {:class => 'deviselabels'}, required: false, autofocus: false, placeholder: "Please use your work or university address", :input_html => {:maxlength => 55, :size => 40, class: 'lineitemdevise'} %>
+                  <%= f.input :password, :label_html => {:class => 'deviselabels'}, required: false, placeholder: "Minimum 8 characters", :input_html => {:maxlength => 15, :size => 40, class: 'lineitemdevise'} %>
+                </div>
+
+            <div class="form-actions">
+          <%= f.button :submit, "Join by email", :class => "dcpb" %>
+         </div>
+          <% end %>
+          </div>
+      </div>
